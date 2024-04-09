@@ -72,8 +72,7 @@ resource "aws_route_table_association" "management_subnet_assoc" {
 }
 
 resource "aws_route_table_association" "a_neutron_external" {
-  subnet_id = aws_subnet.neutron_external_subnet.id
-  #subnet_id      = aws_subnet.management_subnet.id
+  subnet_id      = aws_subnet.neutron_external_subnet.id
   route_table_id = aws_route_table.public_rt.id
 }
 

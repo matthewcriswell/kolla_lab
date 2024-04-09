@@ -44,4 +44,3 @@ resource "aws_security_group" "neutron_external_sg" {
     Name = "NeutronExternalSG"
   }
 }
-

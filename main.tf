@@ -1,7 +1,7 @@
 resource "aws_instance" "openstack_host" {
   ami           = "ami-068cf3d51efeb20d6"
   instance_type = "t3.2xlarge"
-  key_name      = "openstack_lab" # replace with actual key name
+  key_name      = "openstack_lab"
 
   root_block_device {
     volume_size = 100
@@ -94,12 +94,6 @@ resource "aws_instance" "openstack_host" {
       host        = self.public_ip
     }
   }
-
-  # network_interface {
-  #   network_interface_id = aws_network_interface.management.id
-  #   device_index         = 0
-  # }
-
   tags = {
     Name = "OpenStackKollaHost"
   }
@@ -111,14 +105,7 @@ resource "aws_network_interface" "management" {
   private_ips     = ["10.0.1.10"]
 }
 
-# resource "aws_network_interface_attachment" "management_nic_attachment" {
-#   instance_id          = aws_instance.openstack_host.id
-#   network_interface_id = aws_network_interface.management.id
-#   device_index         = 0
-# }
-
 resource "aws_eip" "openstack_host" {
-  #vpc               = true
   network_interface = aws_network_interface.management.id
   depends_on = [
     aws_network_interface.management,
