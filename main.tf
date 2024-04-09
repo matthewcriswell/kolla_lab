@@ -126,8 +126,7 @@ resource "aws_eip" "openstack_host" {
 }
 
 resource "aws_network_interface" "neutron_external" {
-  #subnet_id       = aws_subnet.neutron_external_subnet.id
-  subnet_id       = aws_subnet.management_subnet.id
+  subnet_id       = aws_subnet.neutron_external_subnet.id
   security_groups = [aws_security_group.neutron_external_sg.id]
 }
 
